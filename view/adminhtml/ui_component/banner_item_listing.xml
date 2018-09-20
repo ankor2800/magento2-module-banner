@@ -121,6 +121,21 @@
                 <label>Active</label>
             </settings>
         </column>
+        <column name="img" component="Magento_Ui/js/grid/columns/thumbnail"
+                class="IdealCode\Banner\Ui\Component\Listing\Column\Item\Image">
+            <argument name="data" xsi:type="array">
+                <item name="url" xsi:type="string">banner/item</item>
+                <item name="mediaPath" xsi:type="string">banner/images/</item>
+                <item name="resource" xsi:type="object">IdealCode\Banner\Model\ResourceModel\Item</item>
+                <item name="storeManager" xsi:type="object">Magento\Store\Model\StoreManagerInterface</item>
+            </argument>
+            <settings>
+                <sortable>false</sortable>
+                <altField>name</altField>
+                <hasPreview>1</hasPreview>
+                <label>Image</label>
+            </settings>
+        </column>
         <column name="link">
             <settings>
                 <editor>
