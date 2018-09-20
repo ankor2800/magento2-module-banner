@@ -9,4 +9,8 @@
             </argument>
         </arguments>
     </virtualType>
+    <virtualType name="IdealCode\Banner\Ui\Component\Listing\Column\Item\Action"
+                 type="IdealCode\Banner\Ui\Component\Listing\Column\Action" />
+    <virtualType name="IdealCode\Banner\Ui\Component\Listing\Column\Item\Image"
+                 type="IdealCode\Banner\Ui\Component\Listing\Column\Image" />
 </config>

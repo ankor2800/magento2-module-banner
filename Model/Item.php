@@ -11,6 +11,17 @@ class Item extends \Magento\Framework\Model\AbstractModel
     }
 
     /**
+     * Set Active flag
+     *
+     * @param int $active
+     * @return Item
+     */
+    public function setActive($active)
+    {
+        return $this->setData(Item\Active::COLUMN, $active);
+    }
+
+    /**
      * Get link
      *
      * @return string
