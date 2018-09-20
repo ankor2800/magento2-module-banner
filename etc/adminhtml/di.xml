@@ -29,12 +29,26 @@
             </argument>
         </arguments>
     </virtualType>
-    <virtualType name="IdealCode\Banner\Ui\Component\Form\Item\DataProvider"
-                 type="IdealCode\Core\Ui\Component\Form\DataProvider">
+    <virtualType name="IdealCode\Banner\Model\Image\Upload" type="Magento\Catalog\Model\ImageUploader">
         <arguments>
-            <argument name="collection" xsi:type="object">
-                IdealCode\Banner\Model\ResourceModel\Item\Collection
+            <argument name="baseTmpPath" xsi:type="const">IdealCode\Banner\Model\Item::BASE_TEMP_PATH</argument>
+            <argument name="basePath" xsi:type="const">IdealCode\Banner\Model\Item::BASE_MEDIA_PATH</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
             </argument>
         </arguments>
     </virtualType>
+    <type name="IdealCode\Banner\Controller\Adminhtml\Item\Image\Upload">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">IdealCode\Banner\Model\Image\Upload</argument>
+        </arguments>
+    </type>
+    <type name="IdealCode\Banner\Controller\Adminhtml\Item\Action">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">IdealCode\Banner\Model\Image\Upload</argument>
+        </arguments>
+    </type>
 </config>

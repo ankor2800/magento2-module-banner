@@ -4,6 +4,8 @@ namespace IdealCode\Banner\Model;
 class Item extends \Magento\Framework\Model\AbstractModel
 {
     const BASE_MEDIA_PATH = 'banner/images/';
+    const BASE_TEMP_PATH = 'banner/temp/';
+    const IMAGE_FIELD = 'img';
 
     protected function _construct()
     {
@@ -19,6 +21,11 @@ class Item extends \Magento\Framework\Model\AbstractModel
     public function setActive($active)
     {
         return $this->setData(Item\Active::COLUMN, $active);
+    }
+
+    public function setImage($value)
+    {
+        return $this->setData(self::IMAGE_FIELD, $value);
     }
 
     /**
@@ -50,7 +57,7 @@ class Item extends \Magento\Framework\Model\AbstractModel
     public function getImage()
     {
         $url = false;
-        $image = $this->getData('img');
+        $image = $this->getData(self::IMAGE_FIELD);
 
         /** @var \Magento\Store\Model\StoreManagerInterface $storeManager */
         $storeManager = $this->getData('storeManager');

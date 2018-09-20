@@ -28,6 +28,17 @@ class Save extends Action
                 return $this->_redirect('*/*/');
             }
 
+            // Image save
+            if ($this->getRequest()->getParam('img')) {
+                try {
+                    $data['img'] = $this->_imageUploader->moveFileFromTmp($data['img'][0]['name']);
+                } catch (\Exception $e) {
+                    if ($e->getCode() == 0) {
+                        $this->messageManager->addErrorMessage($e->getMessage());
+                    }
+                }
+            }
+
             $item->setData($data);
 
             try {
