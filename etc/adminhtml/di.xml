@@ -67,4 +67,15 @@
             </argument>
         </arguments>
     </virtualType>
+    <type name="IdealCode\Banner\Controller\Adminhtml\Type\Action">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="collectionFactory" xsi:type="object">
+                    IdealCode\Banner\Model\ResourceModel\Type\CollectionFactory
+                </item>
+                <item name="resource" xsi:type="object">IdealCode\Banner\Model\ResourceModel\Type</item>
+                <item name="modelFactory" xsi:type="object">IdealCode\Banner\Model\TypeFactory</item>
+            </argument>
+        </arguments>
+    </type>
 </config>

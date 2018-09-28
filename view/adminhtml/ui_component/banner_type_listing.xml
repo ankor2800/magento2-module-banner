@@ -26,9 +26,57 @@
     <listingToolbar name="listing_top">
         <bookmark name="bookmarks"/>
         <columnsControls name="columns_controls"/>
+        <massaction name="listing_massaction">
+            <action name="delete">
+                <settings>
+                    <confirm>
+                        <message>Are you sure you want to delete selected types?</message>
+                        <title>Delete types</title>
+                    </confirm>
+                    <url path="*/*/massDelete"/>
+                    <type>delete</type>
+                    <label translate="true">Delete</label>
+                </settings>
+            </action>
+            <action name="edit">
+                <settings>
+                    <callback>
+                        <target>editSelected</target>
+                        <provider>banner_type_listing.banner_type_listing.banner_type_columns_editor</provider>
+                    </callback>
+                    <type>edit</type>
+                    <label translate="true">Edit</label>
+                </settings>
+            </action>
+        </massaction>
         <paging name="listing_paging"/>
     </listingToolbar>
     <columns name="banner_type_columns">
+        <settings>
+            <editorConfig>
+                <param name="clientConfig" xsi:type="array">
+                    <item name="saveUrl" xsi:type="url" path="*/*/inlineEdit"/>
+                    <item name="validateBeforeSave" xsi:type="boolean">false</item>
+                </param>
+                <param name="indexField" xsi:type="string">id</param>
+                <param name="enabled" xsi:type="boolean">true</param>
+                <param name="selectProvider" xsi:type="string">
+                    banner_type_listing.banner_type_listing.banner_type_columns.ids
+                </param>
+            </editorConfig>
+            <childDefaults>
+                <param name="fieldAction" xsi:type="array">
+                    <item name="provider" xsi:type="string">
+                        banner_type_listing.banner_type_listing.banner_type_columns_editor
+                    </item>
+                    <item name="target" xsi:type="string">startEdit</item>
+                    <item name="params" xsi:type="array">
+                        <item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+                        <item name="1" xsi:type="boolean">true</item>
+                    </item>
+                </param>
+            </childDefaults>
+        </settings>
         <selectionsColumn name="ids">
             <settings>
                 <indexField>id</indexField>
@@ -41,6 +89,12 @@
         </column>
         <column name="name">
             <settings>
+                <editor>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">true</rule>
+                    </validation>
+                    <editorType>text</editorType>
+                </editor>
                 <label>Name</label>
             </settings>
         </column>
