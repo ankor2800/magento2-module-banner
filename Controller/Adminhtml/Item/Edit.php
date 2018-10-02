@@ -5,13 +5,15 @@ class Edit extends Action
 {
     public function execute()
     {
-        $id = $this->getRequest()->getParam($this->_itemResource->getIdFieldName());
+        $resource = $this->getResource();
+
+        $id = $this->getRequest()->getParam($resource->getIdFieldName());
 
         /** @var \IdealCode\Banner\Model\Item $item */
-        $item = $this->_itemFactory->create();
+        $item = $this->getModel();
 
         if ($id) {
-            $this->_itemResource->load($item, $id);
+            $resource->load($item, $id);
 
             if (!$item->getId()) {
                 $this->messageManager->addErrorMessage(__('This item no longer exists.'));

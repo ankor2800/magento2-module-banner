@@ -6,8 +6,9 @@ class Save extends Action
     public function execute()
     {
         $data = $this->getRequest()->getPostValue();
+        $resource = $this->getResource();
 
-        $idFieldName = $this->_itemResource->getIdFieldName();
+        $idFieldName = $resource->getIdFieldName();
 
         if ($data) {
             $id = $this->getRequest()->getParam($idFieldName);
@@ -18,9 +19,9 @@ class Save extends Action
             }
 
             /** @var \IdealCode\Banner\Model\Item $item */
-            $item = $this->_itemFactory->create();
+            $item = $this->getModel();
 
-            $this->_itemResource->load($item, $id);
+            $resource->load($item, $id);
 
             if (!$item->getId() && $id)
             {
@@ -31,7 +32,7 @@ class Save extends Action
             // Image save
             if ($this->getRequest()->getParam('img')) {
                 try {
-                    $data['img'] = $this->_imageUploader->moveFileFromTmp($data['img'][0]['name']);
+                    $data['img'] = $this->getImageUploader()->moveFileFromTmp($data['img'][0]['name']);
                 } catch (\Exception $e) {
                     if ($e->getCode() == 0) {
                         $this->messageManager->addErrorMessage($e->getMessage());
@@ -42,7 +43,7 @@ class Save extends Action
             $item->setData($data);
 
             try {
-                $this->_itemResource->save($item);
+                $resource->save($item);
                 $this->messageManager->addSuccessMessage(__('The item has been saved.'));
 
                 if ($this->getRequest()->getParam('back')) {

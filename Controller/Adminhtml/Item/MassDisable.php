@@ -7,11 +7,12 @@ class MassDisable extends Action
     {
         /** @var \Magento\Framework\Data\Collection\AbstractDb $collection */
         $collection = parent::getFilterCollection();
+        $resource = $this->getResource();
 
         /** @var \IdealCode\Banner\Model\Item $item */
         foreach ($collection as $item) {
             $item->setActive(\IdealCode\Banner\Model\Item\Active::STATUS_DISABLED);
-            $this->_itemResource->save($item);
+            $resource->save($item);
         }
 
         $this->messageManager->addSuccessMessage(

@@ -7,12 +7,13 @@ class MassDelete extends Action
     {
         /** @var \Magento\Framework\Data\Collection\AbstractDb $collection */
         $collection = parent::getFilterCollection();
+        $resource = $this->getResource();
 
         $size = $collection->getSize();
 
         /** @var \IdealCode\Banner\Model\Item $item */
         foreach ($collection as $item) {
-            $this->_itemResource->delete($item);
+            $resource->delete($item);
         }
 
         $this->messageManager->addSuccessMessage(

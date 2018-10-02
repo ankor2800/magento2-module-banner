@@ -5,16 +5,18 @@ class Delete extends Action
 {
     public function execute()
     {
-        $idFieldName = $this->_itemResource->getIdFieldName();
+        $resource = $this->getResource();
+
+        $idFieldName = $resource->getIdFieldName();
 
         $id = $this->getRequest()->getParam($idFieldName);
 
         if ($id) {
             try {
                 /** @var \IdealCode\Banner\Model\Item $item */
-                $item = $this->_itemFactory->create();
+                $item = $this->getModel();
 
-                $this->_itemResource->load($item, $id)->delete($item);
+                $resource->load($item, $id)->delete($item);
 
                 $this->messageManager->addSuccessMessage(__('You deleted the item.'));
                 return $this->_redirect('*/*/');

@@ -19,17 +19,19 @@ class InlineEdit extends Action
             ]);
         }
 
+        $resource = $this->getResource();
+
         foreach ($postItems as $id => $post) {
             /** @var \IdealCode\Banner\Model\Item $item */
-            $item = $this->_itemFactory->create();
+            $item = $this->getModel();
 
-            $this->_itemResource->load($item, $id);
+            $resource->load($item, $id);
 
             foreach ($post as $key => $value) {
                 $item->setData($key, $value);
             }
 
-            $this->_itemResource->save($item);
+            $resource->save($item);
         }
 
         return $resultJson->setData([

@@ -9,6 +9,18 @@
             </argument>
         </arguments>
     </virtualType>
+    <type name="IdealCode\Banner\Controller\Adminhtml\Item\Action">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="collectionFactory" xsi:type="object">
+                    IdealCode\Banner\Model\ResourceModel\Item\CollectionFactory
+                </item>
+                <item name="resource" xsi:type="object">IdealCode\Banner\Model\ResourceModel\Item</item>
+                <item name="modelFactory" xsi:type="object">IdealCode\Banner\Model\ItemFactory</item>
+                <item name="imageUploader" xsi:type="object">IdealCode\Banner\Model\Image\Upload</item>
+            </argument>
+        </arguments>
+    </type>
     <virtualType name="IdealCode\Banner\Ui\Component\Listing\Column\Item\Action"
                  type="IdealCode\Banner\Ui\Component\Listing\Column\Action" />
     <virtualType name="IdealCode\Banner\Ui\Component\Listing\Column\Item\Image"
@@ -42,11 +54,6 @@
         </arguments>
     </virtualType>
     <type name="IdealCode\Banner\Controller\Adminhtml\Item\Image\Upload">
-        <arguments>
-            <argument name="imageUploader" xsi:type="object">IdealCode\Banner\Model\Image\Upload</argument>
-        </arguments>
-    </type>
-    <type name="IdealCode\Banner\Controller\Adminhtml\Item\Action">
         <arguments>
             <argument name="imageUploader" xsi:type="object">IdealCode\Banner\Model\Image\Upload</argument>
         </arguments>
