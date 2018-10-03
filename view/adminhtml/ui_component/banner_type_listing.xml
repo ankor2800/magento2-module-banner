@@ -7,6 +7,13 @@
         </item>
     </argument>
     <settings>
+        <buttons>
+            <button name="add">
+                <url path="*/*/new/" />
+                <class>primary</class>
+                <label>Add New Type</label>
+            </button>
+        </buttons>
         <spinner>banner_type_columns</spinner>
         <deps>
             <dep>banner_type_listing.banner_type_listing_data_source</dep>
@@ -98,5 +105,11 @@
                 <label>Name</label>
             </settings>
         </column>
+        <actionsColumn name="actions" class="IdealCode\Banner\Ui\Component\Listing\Column\Type\Action">
+            <argument name="data" xsi:type="array">
+                <item name="url" xsi:type="string">banner/type</item>
+                <item name="resource" xsi:type="object">IdealCode\Banner\Model\ResourceModel\Type</item>
+            </argument>
+        </actionsColumn>
     </columns>
 </listing>
