@@ -18,6 +18,7 @@
                 <item name="resource" xsi:type="object">IdealCode\Banner\Model\ResourceModel\Item</item>
                 <item name="modelFactory" xsi:type="object">IdealCode\Banner\Model\ItemFactory</item>
                 <item name="imageUploader" xsi:type="object">IdealCode\Banner\Model\Image\Upload</item>
+                <item name="filesystem" xsi:type="object">Magento\Framework\Filesystem</item>
             </argument>
         </arguments>
     </type>

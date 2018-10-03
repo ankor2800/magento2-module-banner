@@ -29,18 +29,34 @@ class Save extends Action
                 return $this->_redirect('*/*/');
             }
 
+            $item->setData($data);
+
             // Image save
-            if ($this->getRequest()->getParam('img')) {
+            if ($this->getRequest()->getParam($item::IMAGE_FIELD)) {
+
+                $item->setImage($data['img'][0]['name']);
+
                 try {
-                    $data['img'] = $this->getImageUploader()->moveFileFromTmp($data['img'][0]['name']);
+                    $image = $this->getImageUploader();
+
+                    if (!$this->getMediaDirectory()->isExist(
+                        $image->getFilePath($image->getBasePath(), $item->getData($item::IMAGE_FIELD))
+                    )) {
+                        $item->setImage(
+                            $this->getImageUploader()->moveFileFromTmp(
+                                $item->getData($item::IMAGE_FIELD)
+                            )
+                        );
+                    }
                 } catch (\Exception $e) {
                     if ($e->getCode() == 0) {
                         $this->messageManager->addErrorMessage($e->getMessage());
                     }
                 }
+            } else {
+                // Delete image
+                $item->setImage(false);
             }
-
-            $item->setData($data);
 
             try {
                 $resource->save($item);

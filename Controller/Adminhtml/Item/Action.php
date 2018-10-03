@@ -10,4 +10,14 @@ abstract class Action extends \IdealCode\Banner\Controller\Adminhtml\Action
     {
         return $this->_object->getData('imageUploader');
     }
+
+    /**
+     * @return \Magento\Framework\Filesystem\Directory\ReadInterface
+     */
+    protected function getMediaDirectory()
+    {
+        return $this->_object->getData('filesystem')->getDirectoryRead(
+            \Magento\Framework\App\Filesystem\DirectoryList::MEDIA
+        );
+    }
 }
