@@ -5,6 +5,9 @@ use Magento\Framework\DB\Ddl\Table;
 
 class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
 {
+    const TABLE_ITEMS = 'ic_banner_items';
+    const TABLE_TYPES = 'ic_banner_types';
+
     /**
      * {@inheritdoc}
      * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
@@ -22,7 +25,7 @@ class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
          * Create table 'ic_banner_items'
          */
         $table = $installer->getConnection()->newTable(
-            $installer->getTable('ic_banner_items')
+            $installer->getTable(self::TABLE_ITEMS)
         )->addColumn(
             'id',
             Table::TYPE_INTEGER,
@@ -39,6 +42,11 @@ class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
             null,
             ['unsigned' => true]
         )->addColumn(
+            'type_id',
+            Table::TYPE_INTEGER,
+            null,
+            ['unsigned' => true, 'nullable' => false]
+        )->addColumn(
             'content',
             Table::TYPE_TEXT,
             null,
@@ -53,12 +61,23 @@ class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
             Table::TYPE_TEXT,
             255,
             []
+        )->addForeignKey(
+            $installer->getFkName(
+                self::TABLE_ITEMS,
+                'type_id',
+                self::TABLE_TYPES,
+                'id'
+            ),
+            'type_id',
+            $installer->getTable(self::TABLE_TYPES),
+            'id',
+            Table::ACTION_CASCADE
         );
 
         $installer->getConnection()->createTable($table);
 
         $table = $installer->getConnection()->newTable(
-            $installer->getTable('ic_banner_types')
+            $installer->getTable(self::TABLE_TYPES)
         )->addColumn(
             'id',
             Table::TYPE_INTEGER,
