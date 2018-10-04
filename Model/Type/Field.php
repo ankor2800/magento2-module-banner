@@ -3,6 +3,8 @@ namespace IdealCode\Banner\Model\Type;
 
 class Field implements \Magento\Framework\Option\ArrayInterface
 {
+    const COLUMN = 'type_id';
+
     /**
      * @var \IdealCode\Banner\Model\ResourceModel\Type\CollectionFactory
      */

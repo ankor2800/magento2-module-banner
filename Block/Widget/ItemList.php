@@ -2,6 +2,7 @@
 namespace IdealCode\Banner\Block\Widget;
 
 use \IdealCode\Banner\Model\Item\Active;
+use \IdealCode\Banner\Model\Type\Field as Type;
 
 class ItemList extends \Magento\Framework\View\Element\Template implements \Magento\Widget\Block\BlockInterface
 {
@@ -37,6 +38,7 @@ class ItemList extends \Magento\Framework\View\Element\Template implements \Mage
 
         $item
             ->addFieldToFilter(Active::COLUMN, Active::STATUS_ENABLED)
+            ->addFieldToFilter(Type::COLUMN, $this->getData('type'))
             ->setOrder('sort', $item::SORT_ORDER_ASC)
             ->load();
 

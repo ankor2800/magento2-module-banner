@@ -5,6 +5,10 @@
         <label>Banner list</label>
         <description>Create new banner list</description>
         <parameters>
+            <parameter name="type" xsi:type="select" required="true" visible="true"
+                       source_model="IdealCode\Banner\Model\Type\Field">
+                <label>Select type</label>
+            </parameter>
             <parameter name="template" xsi:type="select" required="true" visible="true">
                 <label>Template</label>
                 <options>
