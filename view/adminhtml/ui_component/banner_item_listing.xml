@@ -130,7 +130,7 @@
                     </validation>
                     <editorType>select</editorType>
                 </editor>
-                <dataType>int</dataType>
+                <dataType>select</dataType>
                 <label>Type</label>
             </settings>
         </column>
