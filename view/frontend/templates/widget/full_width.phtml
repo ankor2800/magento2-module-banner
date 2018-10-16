@@ -4,10 +4,16 @@
  * @var \IdealCode\Banner\Model\ResourceModel\Item\Collection $items
  */
 
+$sliderJsLayout = [
+    'IdealCode_Banner/js/carousel' => [
+        'navigation' => true
+    ]
+];
+
 $items = $block->getItems();
 ?>
 <?php if ($items->count() > 0):?>
-    <div>
+    <div class="banner-wrapper loading" data-mage-init='<?=\Zend_Json::encode($sliderJsLayout)?>'>
         <?php
         /**
          * @var \IdealCode\Banner\Model\Item $item

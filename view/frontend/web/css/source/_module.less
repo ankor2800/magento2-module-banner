@@ -1,0 +1,107 @@
+// Common styles
+& when (@media-common = true) {
+    .banner-wrapper {
+        position: relative;
+        margin: 0 0 20px;
+        padding-bottom: 46.614%;
+        overflow: hidden;
+
+        &.loading {
+            background-repeat: no-repeat;
+            background-position: center;
+            .lib-css(background-image, @loading__background-image);
+        }
+
+        .item {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+            opacity: 0;
+            .lib-css(transition, opacity .6s linear .7s, 1);
+
+            &.current {
+                opacity: 1;
+                z-index: 1;
+
+                > div {
+                    opacity: 1;
+                    .lib-css(transition-delay, 1.5s, 1);
+                }
+            }
+
+            img {
+                height: 100%;
+                width: 100%;
+            }
+
+            > div {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                width: 100%;
+                text-align: center;
+                opacity: 0;
+                .lib-css(transition, opacity .4s linear 0s, 1);
+                .lib-vendor-box-align(center);
+                .lib-vendor-prefix-display();
+
+                > div {
+                    width: 100%;
+                }
+
+                h2 {
+                    letter-spacing: 0.025em;
+                    margin-bottom: 9px;
+                    .lib-font-size(104px);
+                    .lib-css(color, @color-white);
+                    .lib-css(font-weight, @font-weight__bold);
+                }
+
+                p {
+                    max-width: 840px;
+                    margin: 0 auto 41px;
+                    .lib-font-size(29px);
+                    .lib-css(color, @color-white);
+                }
+            }
+        }
+
+        .nav {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            .lib-css(font-family, @icons__font-name);
+            .lib-font-size(80px);
+            .lib-line-height(80px);
+
+            a {
+                .lib-css(color, @color-white);
+
+                &:hover:after {
+                    opacity: .7
+                }
+            }
+
+            .prev:after,
+            .next:after {
+                position: absolute;
+                z-index: 2;
+                margin-top: -40px;
+            }
+
+            .prev:after {
+                left: 25px;
+                .lib-css(content, @icon-prev);
+            }
+
+            .next:after {
+                right: 25px;
+                .lib-css(content, @icon-next);
+            }
+        }
+    }
+}
